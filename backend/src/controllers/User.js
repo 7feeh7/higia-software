@@ -1,34 +1,24 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const salt = bcrypt.genSaltSync(10);
+const encryptPassword = require('../utils/EncryptPassword');
 
 module.exports = {
     async get(req, res) {
-        try {
-            const users = await User.findAll();
-            return res.json(users);
-        } catch (error) {
-            return res.status(500).send(error);
-        }
+        const users = await User.findAll();
+        return res.json(users);
     },
 
     async getById(req, res) {
-        try {
-            const user = await User.findByPk(req.params.id);
-            return res.json(user);
-        } catch (error) {
-            return res.status(404).send("User not found");
-        }
-
+        const user = await User.findByPk(req.params.id);
+        return res.json(user);
     },
 
     async save(req, res) {
         try {
             const { name, email, password } = req.body;
-            const user = await User.create({ name, email, password: bcrypt.hashSync(password, salt) });
+            const user = await User.create({ name, email, password: encryptPassword.setPassword(password)});
             return res.json(user);
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).json();
         }
     },
 
