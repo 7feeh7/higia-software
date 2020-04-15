@@ -4,8 +4,9 @@ const Group = require('./controllers/Group');
 
 const routes = express.Router();
 
-routes.get('/users', User.index);
-routes.post('/users', User.store);
+routes.get('/users', User.get);
+routes.get('/users/:id', User.getById);
+routes.post('/users', User.save);
 
 routes.get('/groups', Group.index);
 routes.post('/groups', Group.store);
