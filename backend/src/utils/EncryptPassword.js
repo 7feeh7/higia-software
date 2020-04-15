@@ -5,7 +5,7 @@ module.exports = {
     setPassword(password) {
         return bcrypt.hashSync(password, salt);
     }, 
-    comparePassword(password) {
-        return bcrypt.compareSync(password, salt);
+    comparePassword(password, databasePassword) {
+        return bcrypt.compareSync(password, databasePassword);
     }
 }
