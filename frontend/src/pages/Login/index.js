@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-
 import { Link, useHistory } from 'react-router-dom';
-
 import { Grid, Typography, TextField, Button } from '@material-ui/core';
 import api from '../../services/api';
 import './style.css';
@@ -17,8 +15,13 @@ export default function Login() {
 
         try {
             const response = await api.post('/login', { email, password });
-            console.log(response);
-            console.log(response.data);
+            localStorage.setItem('userId', response.data.id);
+            localStorage.setItem('userName', response.data.name);
+            localStorage.setItem('userEmail', response.data.email);
+            localStorage.setItem('userGroup', response.data.group);
+            localStorage.setItem('accessToken', response.data.accessToken);
+
+            history.push('/dashboard');
         } catch (error) {
             alert('Falha no Login, tente novamente.');
         }
