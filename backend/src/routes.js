@@ -18,6 +18,6 @@ routes.put('/groups/:id', Group.update);
 routes.delete('/groups/:id', Group.destroy);
 
 // route from authenticate
-routes.post('/login', Login.auth);
+routes.post('/login', Login.authenticate);
 
 module.exports = routes;
