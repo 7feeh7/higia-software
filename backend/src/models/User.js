@@ -6,6 +6,7 @@ class User extends Model {
             name: DataTypes.STRING,
             email: DataTypes.STRING,
             password: DataTypes.STRING,
+            user_group_id: DataTypes.INTEGER,
             active: DataTypes.BOOLEAN,
         }, {
             sequelize

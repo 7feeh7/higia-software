@@ -43,7 +43,7 @@ module.exports = {
         try {
             const group = await Group.findByPk(req.params.id);
             await group.destroy();
-            return res.json();
+            return res.status(204).send();
         } catch (error) {
             return res.status(400).json({ msg: error.message });
         }
