@@ -8,7 +8,7 @@ const routes = express.Router();
 // route grom users
 routes.get('/users', User.get);
 routes.get('/users/:id', User.getById);
-routes.post('/users', User.save);
+routes.post('/register', User.save);
 
 // route from groups
 routes.get('/groups', Group.get);
