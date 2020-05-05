@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./controllers/User');
 const Group = require('./controllers/Group');
+const Course = require('./controllers/Course');
 const Login = require('./controllers/Login');
 
 const routes = express.Router();
@@ -16,6 +17,10 @@ routes.get('/groups/:id', Group.getById);
 routes.post('/groups', Group.save);
 routes.put('/groups/:id', Group.update);
 routes.delete('/groups/:id', Group.destroy);
+
+// route from course
+routes.get('/course', Course.get);
+routes.post('/course', Course.save);
 
 // route from authenticate
 routes.post('/login', Login.authenticate);

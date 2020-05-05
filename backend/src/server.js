@@ -1,10 +1,12 @@
+require('./database');
 const express = require('express');
+const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
-require('./database');
 
 const app = express();
 
+app.use(morgan('tiny'));
 app.use(cors());
 
 app.use(express.json());
