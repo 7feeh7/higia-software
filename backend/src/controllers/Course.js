@@ -11,6 +11,12 @@ module.exports = {
     }, 
 
     async getById(req, res) {
+        try {
+            const course = await Course.findByPk(req.params.id);
+            return res.json(course);
+        } catch (error) {
+            return res.status(400).json({ msg: error.message });
+        }
 
     },
 
@@ -25,10 +31,22 @@ module.exports = {
     },
 
     async update(req, res) {
-
+        try {
+            const course = await Course.findByPk(req.params.id);
+            await course.update(req.body);
+            return res.json(course);
+        } catch (error) {
+            return res.status(400).json({ msg: error.message });
+        }
     },
 
     async destroy(req, res) {
-        
+        try {
+            const course = await Course.findByPk(req.params.id);
+            await course.destroy();
+            return res.send();
+        } catch (error) {
+            return res.status(400).json({ msg: error.message });
+        }
     }
 }
