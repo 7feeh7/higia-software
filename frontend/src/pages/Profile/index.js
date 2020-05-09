@@ -5,8 +5,13 @@ import './style.css';
 export default function Profile() {
 
     const[name, setName] = useState(localStorage.getItem('userName'));
-    const[email, setEmail] = useState(localStorage.getItem('userEmail'));
-    let group = (localStorage.getItem('userGroup') === 1) ? "Professor" : "Coordenador";
+    const email = localStorage.getItem('userEmail');
+    const group = (localStorage.getItem('userGroup') === 1) ? "Professor" : "Coordenador";
+
+    async function handleUpdate(e) {
+        e.preventDefault();
+        console.log(name);
+    }
 
     return(
         <Container component="main" maxWidth="xl">
@@ -16,7 +21,7 @@ export default function Profile() {
                         <Typography variant="h5" component="h2" align="center">Meu perfil</Typography>
                     </Grid>
 
-                    <form>
+                    <form onSubmit={handleUpdate}>
                         <Grid item xs={12} style={{ paddingBottom: 24 }}>
                             <TextField
                                 type="text"
@@ -33,7 +38,6 @@ export default function Profile() {
                                 type="email"
                                 value={email}
                                 label="E-mail"
-                                onChange={e => setEmail(e.target.value)}
                                 disabled
                                 fullWidth
                             />
@@ -49,7 +53,6 @@ export default function Profile() {
                             />
                         </Grid>
 
-                        
                         <Grid item xs={12} style={{ paddingBottom: 0, paddingTop: 20, display: "flex", justifyContent: "space-between" }}>
                             <Button type="submit" variant="contained" color="primary" className="submit">
                                 Salvar

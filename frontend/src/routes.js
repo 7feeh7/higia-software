@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Forgot from './pages/Forgot';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import Course from './pages/Course';
 
 export default function Routes() {
     return (
@@ -16,6 +17,7 @@ export default function Routes() {
                 <Route path="/forgot" component={Forgot} />
                 <Route path="/dashboard" component={Dashboard} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/course" component={Course} />
                 <Route path="*" component={() => <h1>Page not found</h1>} />
             </Switch>
         </BrowserRouter>
